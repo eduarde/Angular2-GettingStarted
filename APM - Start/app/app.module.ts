@@ -4,41 +4,33 @@ import { FormsModule  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { ProductModule } from './products/product.module';
+
 import { AppComponent }  from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 
-import { ProductListComponent }  from './products/product-list.components';
-import { ProductDetailComponent } from './products/product-detail.component';
-import { ProductDetailGuard } from './products/product-guard.service';
-import { ProductFilterPipe } from './products/product-filter.pipe';
-import { StarComponent } from './shared/star.component';
+
 
 @NgModule({
   imports: [ 
     BrowserModule,
-    FormsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: 'products', component: ProductListComponent},
-      { path: 'product/:id', 
-        canActivate: [ ProductDetailGuard ], 
-        component: ProductDetailComponent},
+    
       { path: 'welcome', component: WelcomeComponent},
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-    ])
+    ]),
+    ProductModule
   ],
+ 
 
   declarations: [ 
     AppComponent,
-    ProductListComponent,
-    ProductDetailComponent,
-    ProductFilterPipe,
-    StarComponent,
     WelcomeComponent
   ],
 
-  providers: [ ProductDetailGuard ],
+  // providers: [ providers here ],
 
   bootstrap: [ 
     AppComponent
